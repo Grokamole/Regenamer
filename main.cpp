@@ -1,8 +1,12 @@
+/*
+    Copyright Joseph Miller (C) 2014-2016.
+*/
 #include <iostream>
 #include <regex>
 #include <string>
 #include <string.h>
 #include <boost/filesystem.hpp>
+#include <cstdlib>
 
 #include "FileRenamer.h"
 
@@ -37,9 +41,9 @@ int main(int argc, char *argv[])
 		std::wcout << programName << " " << version << " by " << creator << std::endl;
 		std::wcout << usage << std::endl;
 		std::wcout << fpattern << std::endl;
-		return -1;
+		return EXIT_SUCCESS;
 	}
-	
+
 	try
 	{
 		//convert the patterns to strings
@@ -52,12 +56,10 @@ int main(int argc, char *argv[])
 	catch (std::wstring error)
 	{
 		std::wcout << L"Error in " << programName << L": " << std::endl << error << std::endl;
-		return -2;
 	}
 	catch (boost::filesystem::filesystem_error fse)
 	{
 		std::wcout << L"Filesystem error: " << fse.what() << std::endl;
-		return -3;
 	}
-    return 0;
+    return EXIT_SUCCESS;
 }

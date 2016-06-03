@@ -1,15 +1,33 @@
+/*
+    Copyright Joseph Miller (C) 2014-2016.
+*/
 #include <map>
 #include <string>
 #include <list>
-#include "FileRenamer.h"
 #include <boost/filesystem.hpp>
+#include <boost/regex.hpp>
+
+#include "FileRenamer.h"
+
+FileRenamer::FileRenamer()
+{
+
+}
+
+FileRenamer::FileRenamer( const std::wstring & filePattern, const std::wstring & renamePattern,
+            const bool & includeSubDirectories )
+{
+    Rename(filePattern, renamePattern, includeSubDirectories);
+}
+
 
 /*
 	Rename iterates through the file list, checks for regex matches and replaces those matches with
 	regex formatted file names.  This returns the number of files that were renamed.
 */
 
-unsigned int FileRenamer::Rename(std::wstring filePattern, std::wstring renamePattern, bool includeSubDirectories)
+unsigned int FileRenamer::Rename( const std::wstring & filePattern, const std::wstring & renamePattern,
+                                  const bool & includeSubDirectories )
 {
 	//mapOutput is used to hold original filenames and renamed filenames
 	std::map<std::wstring, std::wstring> mapOutput;
@@ -29,7 +47,7 @@ unsigned int FileRenamer::Rename(std::wstring filePattern, std::wstring renamePa
 				mapOutput.insert(std::pair<std::wstring, std::wstring>(out, out));
 			}
 			++rdi;
-		}		
+		}
 	}
 	else
 	{
@@ -51,7 +69,7 @@ unsigned int FileRenamer::Rename(std::wstring filePattern, std::wstring renamePa
 	{
 		return 0;
 	}
-	
+
 	unsigned int filesRenamed=0; //return value
 
 	auto mit = mapOutput.begin();
@@ -87,7 +105,7 @@ unsigned int FileRenamer::Rename(std::wstring filePattern, std::wstring renamePa
 			}
 		}
 	}
-	
+
 	//if there is a warning, throw it, otherwise,
 	//start renaming the files and throw an error if we've received one
 	if(warn.empty())
