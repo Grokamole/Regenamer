@@ -20,7 +20,7 @@ const std::wstring fpattern = L"\t \"file pattern\" is a standard regex search p
                                "\t\t $0 - the string matching the whole regex pattern.\n"
 							   "\t\t $` - the substring preceding $0.\n"
 							   "\t\t $' - the substring succeeding $0.";
-const std::wstring version = L"Version 1.0.1";
+const std::wstring version = L"Version 1.0.2";
 const std::wstring creator = L"Joseph P. Miller";
 const std::wstring programName = L"Regenamer";
 

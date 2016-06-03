@@ -15,9 +15,9 @@
 					<Add option="-g" />
 				</Compiler>
 				<Linker>
-					<Add library="$(#boost.lib)\libboost_filesystem-mgw48-sd-1_55.a" />
-					<Add library="$(#boost.lib)\libboost_system-mgw48-sd-1_55.a" />
-					<Add library="$(#boost.lib)\libboost_regex-mgw48-sd-1_55.a" />
+					<Add library="$(#boost.lib)/libboost_filesystem-mgw49-mt-d-1_60.a" />
+					<Add library="$(#boost.lib)/libboost_system-mgw49-mt-d-1_60.a" />
+					<Add library="$(#boost.lib)/libboost_regex-mgw49-mt-d-1_60.a" />
 				</Linker>
 			</Target>
 			<Target title="Release">
@@ -31,9 +31,9 @@
 				</Compiler>
 				<Linker>
 					<Add option="-s" />
-					<Add library="$(#boost.lib)\libboost_system-mgw48-s-1_55.a" />
-					<Add library="$(#boost.lib)\libboost_regex-mgw48-s-1_55.a" />
-					<Add library="$(#boost.lib)\libboost_filesystem-mgw48-s-1_55.a" />
+					<Add library="$(#boost.lib)/libboost_system-mgw49-mt-1_60.a" />
+					<Add library="$(#boost.lib)/libboost_regex-mgw49-mt-1_60.a" />
+					<Add library="$(#boost.lib)/libboost_filesystem-mgw49-mt-1_60.a" />
 				</Linker>
 			</Target>
 		</Build>
