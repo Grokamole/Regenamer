@@ -14,6 +14,7 @@ Usage: Regenamer.exe "file pattern" "rename pattern"
 		$` - the substring preceding $0.
 		$' - the substring succeeding $0.
 
+Version 1.0.3 - Updated to use Boost 1.68.0 Beta 1
 Version 1.0.2 - Updated to use Boost 1.60.0.
 Version 1.0.1 - Initial github version
 
