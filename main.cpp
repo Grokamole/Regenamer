@@ -1,5 +1,5 @@
 /*
-    Copyright Joseph Miller (C) 2014-2016.
+    Copyright Joseph Miller (C) 2014-2018.
 */
 #include <iostream>
 #include <regex>
@@ -20,7 +20,7 @@ const std::wstring fpattern = L"\t \"file pattern\" is a standard regex search p
                                "\t\t $0 - the string matching the whole regex pattern.\n"
 							   "\t\t $` - the substring preceding $0.\n"
 							   "\t\t $' - the substring succeeding $0.";
-const std::wstring version = L"Version 1.0.2";
+const std::wstring version = L"Version 1.0.3";
 const std::wstring creator = L"Joseph P. Miller";
 const std::wstring programName = L"Regenamer";
 
@@ -47,17 +47,19 @@ int main(int argc, char *argv[])
 	try
 	{
 		//convert the patterns to strings
-		FileRenamer fr;
-		std::wstring filePattern = std::wstring(argv[1], argv[1] + strlen(argv[1]));
-		std::wstring renamePattern = std::wstring(argv[2], argv[2] + strlen(argv[2]));
+		const FileRenamer fr;
+		const std::wstring filePattern = std::wstring(argv[1], argv[1] + strlen(argv[1]));
+		const std::wstring renamePattern = std::wstring(argv[2], argv[2] + strlen(argv[2]));
+		std::wstring errorString;
+
 		//attempt to rename some files
-		std::wcout << fr.Rename(filePattern, renamePattern, false) << L" files renamed." << std::endl;
+		std::wcout << fr.Rename(filePattern, renamePattern, errorString, false) << L" files renamed." << std::endl;
+		if (!errorString.empty())
+        {
+            std::wcout << L"Error in " << programName << L": " << std::endl << errorString << std::endl;
+        }
 	}
-	catch (std::wstring error)
-	{
-		std::wcout << L"Error in " << programName << L": " << std::endl << error << std::endl;
-	}
-	catch (boost::filesystem::filesystem_error fse)
+	catch (const boost::filesystem::filesystem_error &fse)
 	{
 		std::wcout << L"Filesystem error: " << fse.what() << std::endl;
 	}
